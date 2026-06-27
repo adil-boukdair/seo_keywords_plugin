@@ -1,0 +1,30 @@
+name: seo-keywords
+version: 1.0.0
+description: SEO keyword management — insert seed keywords into MariaDB by market
+author: your-name
+
+provides_tools:
+  - insert_seed_keywords
+  - analyze_keyword_opportunities
+
+requires_env:
+  - name: SEO_DB_HOST
+    description: "MariaDB host (e.g. 192.168.1.10 or db.example.com)"
+    url: ""
+    secret: false
+  - name: SEO_DB_PORT
+    description: "MariaDB port (default: 3306)"
+    url: ""
+    secret: false
+  - name: SEO_DB_NAME
+    description: "Database name"
+    url: ""
+    secret: false
+  - name: SEO_DB_USER
+    description: "Database user"
+    url: ""
+    secret: false
+  - name: SEO_DB_PASSWORD
+    description: "Database password"
+    url: ""
+    secret: true
