@@ -3,8 +3,22 @@
 import json
 import logging
 import os
-
+from pathlib import Path
+ 
 logger = logging.getLogger(__name__)
+ 
+# Load /opt/data/.env (Hermes main env file)
+# Falls back to a local .env when running outside the container (local dev)
+try:
+    from dotenv import load_dotenv
+    _env_file = Path("/opt/data/.env")
+    if not _env_file.exists():
+        _env_file = Path(__file__).parent / ".env"
+    if _env_file.exists():
+        load_dotenv(_env_file, override=True)
+        logger.info("seo-keywords: loaded env from %s", _env_file)
+except ImportError:
+    pass  # python-dotenv not installed — env vars must already be set by Hermes
 
 # ---------------------------------------------------------------------------
 # DB connection helper

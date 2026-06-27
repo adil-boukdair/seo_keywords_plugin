@@ -8,23 +8,23 @@ provides_tools:
   - analyze_keyword_opportunities
 
 requires_env:
-  - name: SEO_DB_HOST
+  - name: DB_HOST
     description: "MariaDB host (e.g. 192.168.1.10 or db.example.com)"
     url: ""
     secret: false
-  - name: SEO_DB_PORT
+  - name: DB_PORT
     description: "MariaDB port (default: 3306)"
     url: ""
     secret: false
-  - name: SEO_DB_NAME
+  - name: DB_AMZ
     description: "Database name"
     url: ""
     secret: false
-  - name: SEO_DB_USER
+  - name: DB_USER
     description: "Database user"
     url: ""
     secret: false
-  - name: SEO_DB_PASSWORD
+  - name: DB_PASSWORD
     description: "Database password"
     url: ""
     secret: true
