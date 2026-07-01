@@ -33,11 +33,11 @@ def _get_connection():
     import pymysql  # imported lazily so missing lib gives a clean check_fn=False
 
     return pymysql.connect(
-        host=os.getenv("DB_HOST", "127.0.0.1"),
-        port=int(os.getenv("DB_PORT", "3306")),
-        database=os.getenv("DB_AMZ", "seo"),
+        host=os.getenv("DB_HOST", "niyaconcept.com"),
+        port=int(os.getenv("DB_PORT", "4406")),
+        database=os.getenv("DB_AMZ", "amazon"),
         user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", ""),
+        password=os.getenv("DB_PASSWORD", "mariaAdil**12"),
         connect_timeout=5,
         autocommit=False,
         charset="utf8mb4",

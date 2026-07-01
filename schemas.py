@@ -4,8 +4,8 @@ INSERT_SEED_KEYWORDS = {
     "name": "insert_seed_keywords",
     "description": (
         "Insert one or more seed keywords into the SEO database for a given market. "
-        "Use this when the user wants to add, save, or store seed keywords for a market or niche. "
-        "A market is a broad topic or category (e.g. 'running shoes', 'home automation', 'keto diet'). "
+        "Use this when the user wants to add, save, or store seed keywords for a market. "
+        "A market is an amazon market (e.g. 'FR', 'US', 'UK'). "
         "Seed keywords are the initial keyword ideas to explore for that market. "
         "Duplicate keywords for the same market are ignored automatically."
     ),
