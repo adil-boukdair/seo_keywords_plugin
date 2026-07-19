@@ -155,7 +155,7 @@ def get_existing_seed_keywords_by_market(market: str) -> str:
         _ensure_table(cursor)
 
         cursor.execute(
-            "SELECT keyword FROM seed_keywords WHERE market = %s ORDER BY keyword ASC",
+            "SELECT distinct keyword FROM seed_keywords WHERE market = %s ORDER BY keyword ASC",
             (market.strip(),),
         )
         keywords = [row[0] for row in cursor.fetchall()]
