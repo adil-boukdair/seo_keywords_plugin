@@ -22,7 +22,16 @@ def register(ctx):
         check_fn=tools.check_db_requirements,
     )
 
-    # Tool 2: placeholder for future keyword analysis
+    # Tool 2: fetch existing seed keywords for a market
+    ctx.register_tool(
+        name="get_existing_seed_keywords_by_market",
+        toolset="seo-keywords",
+        schema=schemas.GET_EXISTING_SEED_KEYWORDS_BY_MARKET,
+        handler=tools.get_existing_seed_keywords_by_market,
+        check_fn=tools.check_db_requirements,
+    )
+
+    # Tool 3: placeholder for future keyword analysis
     ctx.register_tool(
         name="analyze_keyword_opportunities",
         toolset="seo-keywords",
@@ -32,4 +41,4 @@ def register(ctx):
         # knows it exists and can tell the user it's coming soon.
     )
 
-    logger.info("seo-keywords plugin registered (2 tools)")
+    logger.info("seo-keywords plugin registered (3 tools)")

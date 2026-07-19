@@ -5,6 +5,7 @@ author: your-name
 
 provides_tools:
   - insert_seed_keywords
+  - get_existing_seed_keywords_by_market
   - analyze_keyword_opportunities
 
 requires_env:

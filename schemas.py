@@ -36,6 +36,28 @@ INSERT_SEED_KEYWORDS = {
     },
 }
 
+GET_EXISTING_SEED_KEYWORDS_BY_MARKET = {
+    "name": "get_existing_seed_keywords_by_market",
+    "description": (
+        "Retrieve already stored seed keywords for a market from the SEO database. "
+        "Use this when the user asks to list, inspect, or don't reuse keywords that already exist "
+        "for a given market. The results are returned as the current keyword list for that market."
+    ),
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "market": {
+                "type": "string",
+                "description": (
+                    "The market or niche whose existing seed keywords should be fetched. "
+                    "Example: 'running shoes' or 'home automation'."
+                ),
+            },
+        },
+        "required": ["market"],
+    },
+}
+
 ANALYZE_KEYWORD_OPPORTUNITIES = {
     "name": "analyze_keyword_opportunities",
     "description": (

@@ -140,6 +140,44 @@ def analyze_keyword_opportunities(args: dict, **kwargs) -> str:
         ),
     })
 
+# ---------------------------------------------------------------------------
+# Tool 3: get_existing_seed_keywords
+# ---------------------------------------------------------------------------
+def get_existing_seed_keywords_by_market(market: str) -> str:
+    """Return the existing seed keywords for a market separated by comma."""
+
+    if not market or not market.strip():
+        return json.dumps({"error": "Parameter 'market' is required and cannot be empty."})
+
+    try:
+        conn = _get_connection()
+        cursor = conn.cursor()
+        _ensure_table(cursor)
+
+        cursor.execute(
+            "SELECT keyword FROM seed_keywords WHERE market = %s ORDER BY keyword ASC",
+            (market.strip(),),
+        )
+        keywords = [row[0] for row in cursor.fetchall()]
+
+        cursor.close()
+        conn.close()
+
+        logger.info(
+            "get_existing_seed_keywords_by_market: market=%r keywords_found=%d",
+            market.strip(), len(keywords),
+        )
+
+        return ", ".join(keywords)
+        return json.dumps({
+            "success": True,
+            "market": market.strip(),
+            "existing_seed_keywords": keywords,
+        })
+
+    except Exception as exc:
+        logger.exception("get_existing_seed_keywords_by_market failed")
+        return json.dumps({"error": f"Database error: {exc}"})
 
 # ---------------------------------------------------------------------------
 # Availability check (shared by both tools)
@@ -153,7 +191,7 @@ def check_db_requirements() -> bool:
         logger.warning("seo-keywords plugin: 'pymysql' package not installed. Run: pip install pymysql")
         return False
 
-    required = ["SEO_DB_HOST", "SEO_DB_NAME", "SEO_DB_USER", "SEO_DB_PASSWORD"]
+    required = ["DB_HOST", "DB_AMZ", "DB_USER", "DB_PASSWORD"]
     missing = [v for v in required if not os.getenv(v)]
     if missing:
         logger.warning("seo-keywords plugin: missing env vars: %s", missing)
@@ -165,11 +203,22 @@ def check_db_requirements() -> bool:
 def main() -> None:
 
 
+    result = test_get_existing_seed_keywords()
+    print(result)
+
+def test_insert_seed_keywords(): 
     result = insert_seed_keywords(
         market= 'fr',
         seed_keywords= ['Ihram', 'parapluie'],
     )
     print(result)
+
+def test_get_existing_seed_keywords():
+    result = get_existing_seed_keywords_by_market(
+        market= 'fr'
+    )
+    print(result)        
+ 
 
 
 if __name__ == "__main__":
